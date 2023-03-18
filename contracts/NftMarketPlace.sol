@@ -10,7 +10,7 @@ error NotOwner();
 error NftMarketPlace__PriceMustBeAboveZero();
 error NftMarketPlace__NotApprovedForMarketPlace();
 error NftMarketPlace__NotListed(address nftAddress, uint256 tokenId);
-error NftMarketPlace__Listed(address nftAddress, uint256 tokenId);
+error NftMarketPlace__AlreadyListed(address nftAddress, uint256 tokenId);
 error NftMarketPlace__PriceNotMet(address nftAddress, uint256 tokenId, uint256 nftPrice);
 error NftMarketPlace__NoProceeds();
 
@@ -55,7 +55,7 @@ contract NftMarketPlace is ReentrancyGuard {
             }
         } else {
             if (listing.price > 0) {
-                revert NftMarketPlace__Listed(nftAddress, tokenId);
+                revert NftMarketPlace__AlreadyListed(nftAddress, tokenId);
             }
         }
         _;
@@ -96,7 +96,7 @@ contract NftMarketPlace is ReentrancyGuard {
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
-    function cancleItem(
+    function cancelListing(
         address nftAddress,
         uint256 tokenId
     ) external isOwner(nftAddress, tokenId, msg.sender) listedRequired(true, nftAddress, tokenId) {
