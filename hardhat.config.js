@@ -1,5 +1,8 @@
 require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-etherscan")
+require("solidity-coverage")
+require("hardhat-gas-reporter")
+require("hardhat-contract-sizer")
 require("hardhat-deploy")
 require("dotenv").config()
 
@@ -18,11 +21,13 @@ module.exports = {
         },
         localhost: {
             chainId: 31337,
+            blockConfirmations: 1,
         },
         goerli: {
             url: GOERLI_RPC_URL,
             accounts: [PRIVATE_KEY],
 
+            blockConfirmations: 6,
             saveDeployments: true,
             chainId: 5,
         },
