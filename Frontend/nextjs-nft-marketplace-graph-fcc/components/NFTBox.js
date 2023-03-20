@@ -57,10 +57,15 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
         // We are going to cheat a little here...
         if (tokenURI) {
             // IPFS Gateway: A server that will return IPFS files from a "normal" URL.
-            const requestURL = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/")
+            const requestURL = tokenURI.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")
             const tokenURIResponse = await (await fetch(requestURL)).json()
             const imageURI = tokenURIResponse.image
-            const imageURIURL = imageURI.replace("ipfs://", "https://ipfs.io/ipfs/")
+
+            const imageURIURL = imageURI.replace(
+                "https://ipfs.io/ipfs/",
+                "https://cloudflare-ipfs.com/ipfs/"
+            )
+
             setImageURI(imageURIURL)
             setTokenName(tokenURIResponse.name)
             setTokenDescription(tokenURIResponse.description)
