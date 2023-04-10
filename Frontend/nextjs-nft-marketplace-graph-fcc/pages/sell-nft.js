@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 export default function Home() {
     const { chainId, account, isWeb3Enabled } = useMoralis()
     const chainString = chainId ? parseInt(chainId).toString() : "31337"
-    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+    const marketplaceAddress = networkMapping[chainString].NftMarketPlace[0]
     const dispatch = useNotification()
     const [proceeds, setProceeds] = useState("0")
 
@@ -98,7 +98,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if(isWeb3Enabled){
+        if (isWeb3Enabled) {
             setupUI()
         }
     }, [proceeds, account, isWeb3Enabled, chainId])

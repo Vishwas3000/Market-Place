@@ -1,4 +1,3 @@
-import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { useMoralis } from "react-moralis"
 import GET_ACTIVE_ITEMS from "../constants/subGraphQueries"

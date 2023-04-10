@@ -88,6 +88,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
     const formattedSellerAddress = isOwnedByUser ? "you" : truncateStr(seller || "", 15)
 
     const handleCardClick = () => {
+        console.log(`Clicked on ${tokenName}!`)
         isOwnedByUser
             ? setShowModal(true)
             : buyItem({
